@@ -176,7 +176,7 @@ public class HUD extends Module {
         }
 
         if (hudOptionsProperty.isEnabled("TabGUI")) {
-            int x = 4, y = 20, categoryWidth = 80, itemHeight = 13;
+            int x = 2, y = (int) font20.getHeight(), categoryWidth = 80, itemHeight = 13;
             int categoryHeight = categories.size() * itemHeight;
             selectorAnimation.run(current * itemHeight);
 
