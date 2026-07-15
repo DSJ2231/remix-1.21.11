@@ -5,6 +5,7 @@ import cn.remix.event.base.annotation.EventTarget;
 import cn.remix.event.impl.*;
 import cn.remix.management.movement.MovementCorrection;
 import cn.remix.module.impl.combat.Aura;
+import cn.remix.module.impl.player.AntiLava;
 import cn.remix.module.impl.world.Scaffold;
 import cn.remix.util.IMinecraft;
 import cn.remix.util.player.MovementUtil;
@@ -42,8 +43,11 @@ public class RotationManager implements IMinecraft {
 
         Aura aura = instance.getModuleManager().getModule(Aura.class);
         Scaffold scaffold = instance.getModuleManager().getModule(Scaffold.class);
+        AntiLava antiLava = instance.getModuleManager().getModule(AntiLava.class);
 
-        if (scaffold.isEnabled() && scaffold.isCanRotation() && scaffold.getRotations() != null) {
+        if (antiLava.isEnabled() && antiLava.getRotations() != null) {
+            setRotations(antiLava.getRotations(), 180, antiLava.getMovementFix().getValue() ? MovementCorrection.Silent : MovementCorrection.None);
+        } else if (scaffold.isEnabled() && scaffold.isCanRotation() && scaffold.getRotations() != null) {
             setRotations(scaffold.getRotations(), scaffold.getRotationSpeed(), scaffold.getMovementFix().getValue() ? MovementCorrection.Silent : MovementCorrection.None);
         } else if (aura.isEnabled() && aura.getTarget() != null && aura.getRotations() != null) {
             setRotations(aura.getRotations(), aura.getRotationSpeed().getValue(), aura.getMovementFixMode().is("None") ? MovementCorrection.None : (aura.getMovementFixMode().is("Silent") ? MovementCorrection.Silent : MovementCorrection.Strict));

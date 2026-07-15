@@ -63,7 +63,12 @@ public class ModuleManager implements IMinecraft {
                 new KeepSprint(),
                 new Animation(),
                 new ESP(),
+                new ChestESP(),
+                new Step(),
                 new MoreParticles(),
+                new Stuck(),
+                new Strafe(),
+                new AntiLava(),
                 new Sprint()
         );
 
