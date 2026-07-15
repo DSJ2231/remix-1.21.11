@@ -1,15 +1,15 @@
 package cn.remix.module.impl.player;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.hit.HitResult;
 import cn.remix.event.base.annotation.EventTarget;
 import cn.remix.event.impl.UpdateEvent;
 import cn.remix.module.Category;
 import cn.remix.module.Module;
 import cn.remix.module.value.impl.ModeValue;
 import cn.remix.util.player.ItemSpoofUtil;
+import net.minecraft.block.BlockState;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.hit.HitResult;
 
 public class AutoTool extends Module {
     private final ModeValue switchMode = new ModeValue("Switch Mode", "Switch", "Switch", "Spoof");

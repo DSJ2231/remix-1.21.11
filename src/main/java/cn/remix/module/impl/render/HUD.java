@@ -8,7 +8,10 @@ import cn.remix.event.impl.Render2DEvent;
 import cn.remix.module.Category;
 import cn.remix.module.Module;
 import cn.remix.module.impl.exploits.Disabler;
-import cn.remix.module.value.impl.*;
+import cn.remix.module.value.impl.BoolValue;
+import cn.remix.module.value.impl.ColorValue;
+import cn.remix.module.value.impl.ModeValue;
+import cn.remix.module.value.impl.MultiBoolValue;
 import cn.remix.ui.font.TrueTypeFont;
 import cn.remix.ui.hud.Drag;
 import cn.remix.util.animation.Easing;
@@ -48,7 +51,6 @@ public class HUD extends Module {
 
     private final BoolValue noPotionIcons = new BoolValue("No Potion Icons", true);
     private final BoolValue whiteMode = new BoolValue("White Mode", false);
-    private final NumberValue hudFps = new NumberValue("HUD FPS", 60, 5, 360);
     private final EasingAnimation yAnimation = new EasingAnimation(Easing.EASE_OUT_QUART, 250);
     private final EasingAnimation selectorAnimation = new EasingAnimation(Easing.EASE_OUT_QUART, 200);
     private final EasingAnimation moduleAnimation = new EasingAnimation(Easing.EASE_OUT_QUART, 200);

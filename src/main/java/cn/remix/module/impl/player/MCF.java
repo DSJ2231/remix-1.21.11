@@ -1,14 +1,14 @@
 package cn.remix.module.impl.player;
 
+import cn.remix.event.base.annotation.EventTarget;
+import cn.remix.event.impl.UpdateEvent;
+import cn.remix.module.Category;
+import cn.remix.module.Module;
 import cn.remix.util.Util;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.hit.EntityHitResult;
 import org.lwjgl.glfw.GLFW;
-import cn.remix.event.base.annotation.EventTarget;
-import cn.remix.event.impl.UpdateEvent;
-import cn.remix.module.Category;
-import cn.remix.module.Module;
 
 public final class MCF extends Module {
     private boolean middlePressed = false;

@@ -12,7 +12,6 @@ import cn.remix.module.value.impl.BoolValue;
 import cn.remix.module.value.impl.ModeValue;
 import cn.remix.module.value.impl.NumberValue;
 import cn.remix.util.Util;
-import cn.remix.util.misc.MathUtil;
 import cn.remix.util.misc.TimerUtil;
 import cn.remix.util.network.PacketUtil;
 import cn.remix.util.player.*;
@@ -32,7 +31,7 @@ public class Scaffold extends Module {
     private final ModeValue mode = new ModeValue("Mode", "Normal", "Normal", "Telly Bridge");
     private final NumberValue tellyTick = new NumberValue("Telly Tick", 1, 1, 5, 1, () -> !mode.is("Normal"));
     private final ModeValue rotationMode = new ModeValue("Rotation Mode", "Normal", "Normal", "Facing", "Hit Vec", "Nearest", "Hypixel");
-    private final NumberValue shrink = new NumberValue("Shrink", .1f, 0, .45f, .01f, () -> rotationMode.is("Nearest") && rotationMode.is("Hypixel"));
+    private final NumberValue shrink = new NumberValue("Shrink", .1f, 0, .45f, .01f, () -> rotationMode.is("Nearest") || rotationMode.is("Hypixel"));
     private final NumberValue rotationSpeed = new NumberValue("Rotation Speed", 180, 0, 180, 5);
     private final ModeValue towerMode = new ModeValue("Tower Mode", "None", "None", "Vanilla");
     public static BoolValue downwards = new BoolValue("Downwards", false);

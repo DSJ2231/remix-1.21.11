@@ -9,6 +9,7 @@ import cn.remix.util.animation.EasingAnimation;
 import cn.remix.util.render.ColorUtil;
 import cn.remix.util.render.Render2D;
 import net.minecraft.client.gui.DrawContext;
+import net.minecraft.util.math.MathHelper;
 
 import java.awt.*;
 import java.util.List;
@@ -41,7 +42,7 @@ public final class MultiBoolComponent extends Component {
         float finalProgress = progress * globalAlpha;
         if (finalProgress < 0.01f) return;
 
-        int alpha = (int) (255.0f * finalProgress);
+        int alpha = MathHelper.clamp((int) (255.0f * finalProgress), 0, 255);
         String title = " - " + getValue().getName() + " - ";
         font.drawString(context, title, x + (width - font.getStringWidth(title)) / 2.0f, y + 2.0f, new Color(204, 204, 204, alpha).getRGB());
 

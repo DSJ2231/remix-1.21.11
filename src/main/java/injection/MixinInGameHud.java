@@ -7,6 +7,9 @@ import cn.remix.util.misc.TimerUtil;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.gui.render.state.GuiRenderState;
+import net.minecraft.client.gui.render.state.ItemGuiElementRenderState;
+import net.minecraft.client.gui.render.state.TextGuiElementRenderState;
+import net.minecraft.client.gui.render.state.special.SpecialGuiElementRenderState;
 import net.minecraft.client.render.RenderTickCounter;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -27,7 +30,7 @@ public abstract class MixinInGameHud implements IMinecraft {
     private void render(DrawContext context, RenderTickCounter tickCounter, CallbackInfo ci) {
         if (mc.player == null || mc.world == null) return;
 
-        if (timer.hasTimeElapsed(1000L / instance.getModuleManager().getModule(HUD.class).getHudFps().getValue())) {
+        if (timer.hasTimeElapsed(1000L / 120)) {
             timer.reset();
             cachedHudState.clear();
             DrawContext cacheContext = new DrawContext(mc, cachedHudState, mc.getWindow().getScaledWidth(), mc.getWindow().getScaledHeight());
@@ -35,6 +38,9 @@ public abstract class MixinInGameHud implements IMinecraft {
         }
 
         cachedHudState.forEachSimpleElement(context.state::addSimpleElement, GuiRenderState.LayerFilter.ALL);
+        cachedHudState.forEachTextElement(context.state::addText);
+        cachedHudState.forEachItemElement(context.state::addItem);
+        cachedHudState.forEachSpecialElement(context.state::addSpecialElement);
     }
 
     @Inject(method = "renderStatusEffectOverlay", at = @At("HEAD"), cancellable = true)

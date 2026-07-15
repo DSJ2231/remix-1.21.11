@@ -14,10 +14,11 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.input.CharInput;
 import net.minecraft.client.input.KeyInput;
 import org.lwjgl.glfw.GLFW;
+
 import java.awt.*;
 import java.io.File;
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public final class ConfigPanel extends Panel {
     public static final float maxHeight = 200;

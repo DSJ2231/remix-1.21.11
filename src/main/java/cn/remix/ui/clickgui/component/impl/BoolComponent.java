@@ -8,6 +8,7 @@ import cn.remix.util.animation.EasingAnimation;
 import cn.remix.util.render.ColorUtil;
 import cn.remix.util.render.Render2D;
 import net.minecraft.client.gui.DrawContext;
+import net.minecraft.util.math.MathHelper;
 
 import java.awt.*;
 
@@ -35,7 +36,7 @@ public final class BoolComponent extends Component {
 
         BoolValue bv = (BoolValue) getValue();
         var font = instance.getFontManager().getFont(16);
-        int alpha = (int) (255 * finalProgress);
+        int alpha = MathHelper.clamp((int) (255 * finalProgress), 0, 255);
 
         font.drawString(context, bv.getName(), x + 4, y + (14 - font.getHeight()) / 2.0f + 0.5f, new Color(204, 204, 204, alpha).getRGB());
         animation.run(bv.getValue() ? 1 : 0);

@@ -2,16 +2,13 @@ package cn.remix.module.impl.move;
 
 import cn.remix.event.base.annotation.EventTarget;
 import cn.remix.event.impl.UpdateEvent;
-import cn.remix.event.impl.PacketEvent;
 import cn.remix.module.Category;
 import cn.remix.module.Module;
-import cn.remix.module.value.impl.ModeValue;
 import lombok.Getter;
 import net.minecraft.client.gui.screen.ChatScreen;
 import net.minecraft.client.gui.screen.DeathScreen;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
-import net.minecraft.network.packet.c2s.play.ClickSlotC2SPacket;
 
 @Getter
 public class GuiMove extends Module {

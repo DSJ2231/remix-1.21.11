@@ -1,10 +1,10 @@
 package cn.remix.module.impl.move;
 
-import cn.remix.event.impl.CobwebEvent;
-import cn.remix.module.Module;
 import cn.remix.event.base.annotation.EventTarget;
+import cn.remix.event.impl.CobwebEvent;
 import cn.remix.event.impl.UpdateEvent;
 import cn.remix.module.Category;
+import cn.remix.module.Module;
 import cn.remix.module.value.impl.ModeValue;
 import cn.remix.module.value.impl.NumberValue;
 import cn.remix.util.player.MovementUtil;

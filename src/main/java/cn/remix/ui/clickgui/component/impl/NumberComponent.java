@@ -40,7 +40,7 @@ public final class NumberComponent extends Component {
         var font = instance.getFontManager().getFont(16);
         String display = nv.getInc() % 1.0f == 0.0f ? String.valueOf(nv.getValue().longValue()) : String.format("%.2f", nv.getValue());
 
-        int alpha = (int) (255.0f * finalProgress);
+        int alpha = MathHelper.clamp((int) (255.0f * finalProgress), 0, 255);
         font.drawString(context, nv.getName(), x + 4.0f, y + 2.0f, new Color(204, 204, 204, alpha).getRGB());
         font.drawString(context, display, x + width - 6.0f - font.getStringWidth(display), y + 2.0f, new Color(154, 154, 170, alpha).getRGB());
 
