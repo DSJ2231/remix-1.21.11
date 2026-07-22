@@ -17,6 +17,7 @@ import cn.remix.ui.hud.Drag;
 import cn.remix.util.animation.Easing;
 import cn.remix.util.animation.EasingAnimation;
 import cn.remix.util.misc.RomanNumeralUtil;
+import cn.remix.util.player.MovementUtil;
 import cn.remix.util.render.ColorUtil;
 import cn.remix.util.render.Render2D;
 import lombok.Getter;
@@ -119,33 +120,38 @@ public class HUD extends Module {
         if (hudOptionsProperty.isEnabled("Position")) {
             int fps = mc.getCurrentFps();
             int tps = (int) mc.world.getTickManager().getTickRate();
+            double bps = MovementUtil.getBPS();
 
             String xyzText = "XYZ: ";
             String xyzVal = Math.round(mc.player.getX()) + " " + Math.round(mc.player.getY()) + " " + Math.round(mc.player.getZ()) + " ";
             String fpsText = "FPS: ";
             String fpsVal = fps + " ";
             String tpsText = "TPS: ";
-            String tpsVal = String.valueOf(tps);
+            String tpsVal = tps + " ";
+            String bpsText = "BPS: ";
+            String bpsVal = String.valueOf(bps);
 
             float px = 2;
             float py = sh - height - yAnimation.getValue().floatValue();
 
             font20.drawStringWithShadow(context, xyzText, px, py, getModule(HUD.class).getWhiteMode().getValue() ? -1 : getColor());
             px += font20.getStringWidth(xyzText);
-
             font20.drawStringWithShadow(context, Formatting.GRAY + xyzVal, px, py, -1);
             px += font20.getStringWidth(xyzVal);
 
             font20.drawStringWithShadow(context, fpsText, px, py, getModule(HUD.class).getWhiteMode().getValue() ? -1 : getColor());
             px += font20.getStringWidth(fpsText);
-
             font20.drawStringWithShadow(context, Formatting.GRAY + fpsVal, px, py, -1);
             px += font20.getStringWidth(fpsVal);
 
             font20.drawStringWithShadow(context, tpsText, px, py, getModule(HUD.class).getWhiteMode().getValue() ? -1 : getColor());
             px += font20.getStringWidth(tpsText);
-
             font20.drawStringWithShadow(context, Formatting.GRAY + tpsVal, px, py, -1);
+            px += font20.getStringWidth(tpsVal);
+
+            font20.drawStringWithShadow(context, bpsText, px, py, getModule(HUD.class).getWhiteMode().getValue() ? -1 : getColor());
+            px += font20.getStringWidth(bpsText);
+            font20.drawStringWithShadow(context, Formatting.GRAY + bpsVal, px, py, -1);
         }
 
         if (hudOptionsProperty.isEnabled("Potion Effects")) {

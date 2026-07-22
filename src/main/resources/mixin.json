@@ -3,12 +3,12 @@
   "minVersion": "0.8",
   "package": "injection",
   "compatibilityLevel": "JAVA_21",
-  "mixins": [
+  "mixins": [],
+  "client": [
     "MixinBiome",
     "MixinClientConnection$Proxy",
-    "MixinCobwebBlock"
-  ],
-  "client": [
+    "MixinCobwebBlock",
+    "MixinCamera",
     "MixinChatInputSuggestor",
     "MixinChatScreen",
     "MixinClientConnection",

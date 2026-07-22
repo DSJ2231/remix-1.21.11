@@ -149,8 +149,8 @@ public class TrueTypeFont implements IMinecraft {
         matrices.pushMatrix();
         matrices.scale(1f / scale, 1f / scale);
 
-        float sx = x * scale;
-        float sy = y * scale + fontTexture.getFontAscent();
+        int baseX = Math.round(x * scale);
+        int baseY = Math.round(y * scale + fontTexture.getFontAscent());
 
         for (int i = 0; i < data.length; i++) {
             FontData glyph = data[i];
@@ -161,7 +161,9 @@ public class TrueTypeFont implements IMinecraft {
             if (shadow) {
                 c = (c & 0xFCFCFC) >> 2 | (c & 0xFF000000);
             }
-            ctx.drawTexture(RenderPipelines.GUI_TEXTURED, glyph.atlasId(), Math.round(sx + xs[i] + glyph.offsetX()), Math.round(sy + ys[i] + glyph.offsetY()), glyph.u0() * 4096f, glyph.v0() * 4096f, glyph.width(), glyph.height(), 4096, 4096, c);
+            int px = baseX + Math.round(xs[i] + glyph.offsetX());
+            int py = baseY + Math.round(ys[i] + glyph.offsetY());
+            ctx.drawTexture(RenderPipelines.GUI_TEXTURED, glyph.atlasId(), px, py, glyph.u0() * 4096f, glyph.v0() * 4096f, glyph.width(), glyph.height(), 4096, 4096, c);
         }
         matrices.popMatrix();
     }

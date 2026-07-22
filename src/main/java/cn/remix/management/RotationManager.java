@@ -8,8 +8,11 @@ import cn.remix.module.impl.combat.Aura;
 import cn.remix.module.impl.player.AntiLava;
 import cn.remix.module.impl.world.Scaffold;
 import cn.remix.util.IMinecraft;
+import cn.remix.util.Util;
 import cn.remix.util.player.MovementUtil;
 import cn.remix.util.player.RotationUtil;
+import injection.accessor.PlayerMoveC2SPacketAccessor;
+import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 
 /**
  * RotationManager
@@ -55,10 +58,20 @@ public class RotationManager implements IMinecraft {
             enabled = false;
         }
 
-
         lastRotations = currentRotations;
         currentRotations = RotationUtil.getSmoothRotation(lastRotations, targetRotations, rotationSpeed + Math.random());
         mc.gameRenderer.updateCrosshairTarget(1.0f);
+    }
+
+    @EventTarget
+    @EventPriority(0)
+    public void onPacket(PacketEvent packetEvent) {
+        if (packetEvent.getPacket() instanceof PlayerMoveC2SPacket movePacket) {
+            float yaw = movePacket.getYaw(0);
+            if (yaw < 360 && yaw > -360) {
+                ((PlayerMoveC2SPacketAccessor) movePacket).setYaw(yaw + 720);
+            }
+        }
     }
 
     @EventTarget

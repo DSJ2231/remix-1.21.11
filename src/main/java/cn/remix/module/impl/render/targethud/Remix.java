@@ -59,42 +59,11 @@ public class Remix implements IMinecraft {
                 TrueTypeFont smallFont = instance.getFontManager().getFont(10);
 
                 float maxRightX = x + width - 3;
-                drawTabPingIcon(context, maxRightX - 12, y + 20, ping);
+                Render2D.drawPingIcon(context, maxRightX - 12, y + 20, ping);
 
                 float pingX = maxRightX - smallFont.getStringWidth(pingText);
                 smallFont.drawStringWithShadow(context, pingText, pingX, y + 27, new Color(200, 200, 200).getRGB());
             }
-        }
-    }
-
-    private static void drawTabPingIcon(DrawContext context, float x, float y, int ping) {
-        int bars;
-        int color;
-
-        if (ping < 0) {
-            bars = 0;
-            color = new Color(165, 0, 0).getRGB();
-        } else if (ping < 150) {
-            bars = 5;
-            color = new Color(0, 165, 0).getRGB();
-        } else if (ping < 300) {
-            bars = 4;
-            color = new Color(0, 165, 0).getRGB();
-        } else if (ping < 600) {
-            bars = 3;
-            color = new Color(165, 165, 0).getRGB();
-        } else if (ping < 1000) {
-            bars = 2;
-            color = new Color(165, 80, 0).getRGB();
-        } else {
-            bars = 1;
-            color = new Color(165, 0, 0).getRGB();
-        }
-
-        for (int i = 0; i < 5; i++) {
-            int drawColor = (i < bars || bars == 0) ? color : new Color(60, 60, 60).getRGB();
-            float height = 2 + i * 1.25f;
-            Render2D.drawRect(context, x + i * 2, y + 7 - height, 1, height, drawColor);
         }
     }
 

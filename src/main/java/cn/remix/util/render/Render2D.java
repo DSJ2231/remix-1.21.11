@@ -97,6 +97,32 @@ public final class Render2D implements IMinecraft {
         InventoryScreen.drawEntity(context, x1, y1, x2, y2, 16, 0.0625F, 0, 0, entity);
     }
 
+    public void drawPingIcon(DrawContext context, float x, float y, int ping) {
+        Identifier icons = Identifier.ofVanilla("textures/gui/icons.png");
+
+        int u;
+        if (ping < 0) {
+            u = 5;
+        } else if (ping < 150) {
+            u = 0;
+        } else if (ping < 300) {
+            u = 1;
+        } else if (ping < 600) {
+            u = 2;
+        } else if (ping < 1000) {
+            u = 3;
+        } else {
+            u = 4;
+        }
+
+        int textureX = u * 10;
+        int textureY = 176;
+
+        drawTexture(context, icons, x, y, 10, 8,
+                    textureX / 256f, textureY / 256f,
+                    (textureX + 10) / 256f, (textureY + 8) / 256f, -1);
+    }
+
     private record FloatQuadTexturedGuiElementRenderState(
             RenderPipeline pipeline, TextureSetup textureSetup, Matrix3x2fc pose,
             float x0, float y0, float x1, float y1, float u0, float v0, float u1, float v1, int color,
