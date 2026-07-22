@@ -66,6 +66,7 @@ public class ModuleManager implements IMinecraft {
                 new Animation(),
                 new ESP(),
                 new ChestESP(),
+                new GhostHand(),
                 new Step(),
                 new MoreParticles(),
                 new Stuck(),
